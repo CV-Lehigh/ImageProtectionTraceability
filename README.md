@@ -20,7 +20,7 @@ This project studies the robustness performance of adversarial-based and waterma
 | `style` | AI-based stylization | SDXL "Change to Ghibli style" |
 | `semantic` | AI-based semantic editing | Gemini detects the object list, SDXL remove certain objects from the image |
 
-2. ** apply.py** - script that applys the transformation 
+2. **apply.py** - script that applys the transformation 
 ```
 Level 1: single transformation
   e.g.: semantic, style, realistic, etc.
