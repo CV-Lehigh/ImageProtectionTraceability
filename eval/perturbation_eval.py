@@ -24,6 +24,7 @@ def main(args):
 
     device = args.device
 
+    # Load the model
     model_id_or_path = args.model_id_or_path
     pipe_img2img = StableDiffusionImg2ImgPipeline.from_pretrained(
         model_id_or_path,
@@ -32,12 +33,14 @@ def main(args):
     )
     pipe_img2img = pipe_img2img.to(device)
 
+    # Setup the hyperparameters
     SEED = 9222
     STRENGTH = args.STRENGTH
     GUIDANCE = args.GUIDANCE
     NUM_STEPS = args.NUM_STEPS
-    ori_dataset_path = args.ori_dataset_path   #os.listdir(args.ori_dataset_path)
+    ori_dataset_path = args.ori_dataset_path  
 
+    # Make the list of images so that we can enumerate all the images easier
     if any(os.path.isdir(os.path.join(ori_dataset_path, f)) for f in os.listdir(ori_dataset_path)):
         image_files = []
         for subfolder in sorted(os.listdir(ori_dataset_path)):
@@ -53,7 +56,8 @@ def main(args):
     os.makedirs(ori_save_path, exist_ok=True)
     for image_file in image_files:
         os.makedirs(os.path.join(ori_save_path, image_file.rsplit("/", 1)[0]), exist_ok=True)
-
+        
+    # Enumerate all the images and save the images
     for img_name in tqdm(image_files, colour="green", desc="images", leave=True):
         ori_image = Image.open(os.path.join(args.ori_dataset_path, img_name)).resize((512, 512), resample=Image.BICUBIC)
         with torch.autocast('cuda'):

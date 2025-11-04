@@ -89,7 +89,6 @@ for i in tqdm(forth_level_list, desc="4level"):
         print(f"{i} already exists")
 
 
-
 #5-level
 fifth_level_list = []
 for i in tqdm(trans_list):

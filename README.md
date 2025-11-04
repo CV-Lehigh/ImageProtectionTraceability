@@ -6,6 +6,10 @@ This project studies the robustness performance of adversarial-based and waterma
 
 ---
 ## Structure and Function
+#### 0. Setup environment
+```
+conda env create -f environment.yml
+```
 #### 1. **utils.py**  - includes 10 transformation methods
 | Method | Function | Detail |
 |--------|------|---------|
@@ -20,7 +24,7 @@ This project studies the robustness performance of adversarial-based and waterma
 | `style` | AI-based stylization | SDXL "Change to Ghibli style" |
 | `semantic` | AI-based semantic editing | Gemini detects the object list, SDXL remove certain objects from the image |
 
-2. **apply.py** - script that applys the transformation 
+#### 2. **apply.py** - script that applys the transformation 
 ```
 Level 1: single transformation
   e.g.: semantic, style, realistic, etc.
@@ -38,7 +42,9 @@ Level 4: combination of four non-repeatable transformations
 Level 5: combination of five non-repeatable transformations
   #: 20 types (10 × 2)
 ```
-3. **eval/psnr.py** - evaluate Peak Signal-to-Noise Ratio quality
+The ultimate transformed data locates at [Google Drive](https://drive.google.com/file/d/1g7V0L3A8_q1WYdLqJNk1zXPo-gjdlyUq/view?usp=drive_link).
+#### 3. **eval/psnr.py** - evaluate Peak Signal-to-Noise Ratio quality
 ```python
 PSNR = 20 × log10(MAX / √MSE)
 ```
+#### 4. **eval/perturbation_eval.py** - evaluate image alignment score change after AI-based editing
